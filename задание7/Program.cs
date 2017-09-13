@@ -12,7 +12,7 @@ namespace задание7
         {
             int k,kol=0;
             bool ok = true;
-            Console.WriteLine(@"Введите булевую функцию, состоящую из 0,1 и *
+            Console.WriteLine(@"Введите булевую функцию, состоящую из 0,1 и <*>
 Длина должна быть равна степени 2-ки");
             string s = Console.ReadLine();//ввод булевой функции
             Proverka("выражение", ref s);
@@ -29,6 +29,7 @@ namespace задание7
 
             if (ok == true)//основной цикл
             {
+                k = s.Length - 1; //длина выражения
                 for (int i = 0; i < (s.Length / 2); i++)
                 {
                     if ((mas[i] == '*') && (mas[k] == '*'))
@@ -52,27 +53,50 @@ namespace задание7
                             }
 
                         }
-                    }
-                    k--;
+                            k--;
+                    } 
+                   
                 }
             }
 
-            if (kol > 0)
+            for (int i=48;i<50;i++)
             {
-                k = s.Length - 1;
-                for (int j = 0; j < Math.Pow(2, kol); j++)
+                for (int j = 48; j < 50; j++)
                 {
-                    for (int i = 0; i < (s.Length / 2); i++)
+                    mas[1] = (char)i;
+                    mas[3]= (char)j;
+                    k = s.Length - 1;
+                    for (int m=0;m<s.Length/2;m++)
                     {
-                        if (array[i]==1)
-                        {
-                            mas[i] = '0';
-                            mas[k] = '1';
-                        }
+                        if (mas[m] == '0') mas[k] = '1';
+                        else mas[k] = '0';
                         k--;
                     }
+                    Console.WriteLine(mas);
                 }
             }
+            
+            //int j = 0;
+            //if (kol > 0)
+            //{
+            //    k = s.Length - 1;             
+            //        for (int i = 0; i < 8; i++)
+            //        {
+            //             if (array[j]==1)
+            //            {
+            //                mas[i] = '0';
+            //                mas[k] = '1';
+            //                Console.WriteLine(mas);
+            //                mas[i] = '1';
+            //                mas[k] = '0';
+            //                Console.WriteLine(mas);
+            //            }
+            //        j++;
+            //            k--;
+            //        if (j == 3) j = 0;
+            //        }
+                 
+            //}
 
                 Console.WriteLine(mas);
             Console.ReadKey();
