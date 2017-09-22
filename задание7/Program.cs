@@ -15,10 +15,13 @@ namespace задание7
             int n = 0;//для индексации массива пар элементов <*>
             int time =1;//переменная-счетчик для вывода конечных выражений
             bool ok = true;
-            Console.WriteLine(@"Введите булевую функцию, состоящую из 0,1 и <*>
-Длина должна быть равна степени 2-ки");
+            string str="";
+            Console.WriteLine(@"Программа определяет самодвойственность булевой функции
+Введите булевую функцию, состоящую из 0,1 и <*>
+Длина должна быть равна степени 2-ки (2<s<16)");
             string s = Console.ReadLine();//ввод булевой функции
             Proverka("выражение", ref s);//проверка ввода
+            str = s;
             char[] mas = s.ToCharArray();//представление булевой функции в виде массива
             k = s.Length - 1;
 
@@ -70,9 +73,9 @@ namespace задание7
                                     if (mas[k] == '*')
                                     {
                                         if (mas[i] == '1') mas[k] = '0'; else mas[k] = '1';
-                                    }
-                                    k--;
+                                    }                                  
                                 }
+                                k--;
                             }
                             for (int i = 48; i < 50; i++)//для 1 пары <*>
                             {                              
@@ -103,8 +106,8 @@ namespace задание7
                                     {
                                         if (mas[i] == '1') mas[k] = '0'; else mas[k] = '1';
                                     }
-                                    k--;
                                 }
+                                k--;
                             }
                             for (int i = 48; i < 50; i++)//для 2 пар <*>
                             {
@@ -139,8 +142,8 @@ namespace задание7
                                     {
                                         if (mas[i] == '1') mas[k] = '0'; else mas[k] = '1';
                                     }
-                                    k--;
                                 }
+                                k--;
                             }
                             for (int i = 48; i < 50; i++)//для 3 пар <*>
                             {
@@ -179,8 +182,8 @@ namespace задание7
                                     {
                                         if (mas[i] == '1') mas[k] = '0'; else mas[k] = '1';
                                     }
-                                    k--;
                                 }
+                                k--;
                             }
                             for (int i = 48; i < 50; i++)//для 4 пар <*>
                             {
@@ -230,6 +233,7 @@ namespace задание7
                             k--;
                         }
                     }
+                    if (s == str) Console.WriteLine("Булева функция самодвойственная");
                     Console.WriteLine(mas);//вывод выражения на экран
                 }
             }//END(MAIN)
@@ -240,14 +244,15 @@ namespace задание7
             bool ok = false;
             do
             {
-                int kol = 0,coin;
+                int kol = 0,
+                    coin;//длина выражения
                 char[] array = a.ToCharArray();
                 for (int i = 0; i < a.Length; i++)
                 {
                     if ((array[i] == '1') || (array[i] == '0') || (array[i] == '*')) kol++;
                 }
                 coin = a.Length;
-                if ((kol == a.Length)&&((coin == 2) || (coin == 4)||(coin == 8) || (coin == 16))) ok = true;                
+                if ((kol == a.Length)&&((coin == 2) || (coin == 4)||(coin == 8) || (coin == 16)) && (a.Length<17)) ok = true;                
                 else
                 {
                     if (!ok) Console.WriteLine("\aВведите " + s + " заново");
